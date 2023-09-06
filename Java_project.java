@@ -1,11 +1,11 @@
 import java.util.*;
 
-class Transaction {
+class Transaction {            //Transaction class that display the transaction history 
     private final String date;
     private final String description;
     private final double amount;
 
-    public Transaction(String description, double amount) {
+    public Transaction(String description, double amount) {   
         this.date = new Date().toString();
         this.description = description;
         this.amount = amount;
@@ -17,7 +17,7 @@ class Transaction {
     }
 }
 
-class BankAccount {
+class BankAccount {             //BankAccount class have four methods 1. Deposit 2. withdraw 3.getAccountDetails 4.getTransactionHistory
     private final String accountNumber;
     private final String accountHolderName;
     private double balance;
@@ -63,13 +63,13 @@ public class BankManagementSystemproject {
 
         while (true) {
             System.out.println("1. Create Account\n2. Deposit\n3. Withdraw\n4. Details of the user\n5. Display all user\n6. Show Transaction History\n7. Exit");
-            System.out.print("Enter your choice: ");
+            System.out.print("Enter the choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();  
 
             switch (choice) {
                 case 1:
-                    System.out.print("Account Number: ");
+                    System.out.print("Account Number Of The Customer: ");
                     String accountNumber = scanner.nextLine();
                     System.out.print("Account Holder Name: ");
                     String accountHolderName = scanner.nextLine();
@@ -79,7 +79,7 @@ public class BankManagementSystemproject {
                     System.out.println("Account created.");
                     break;
                 case 2:
-                    System.out.print("Account Number: ");
+                    System.out.print("Account Number Of The Customer: ");
                     String depositAccountNumber = scanner.nextLine();
                     BankAccount depositAccount = accounts.get(depositAccountNumber);
                     if (depositAccount != null) {
