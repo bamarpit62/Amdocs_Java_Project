@@ -1,11 +1,11 @@
 import java.util.*;
 
-class Transaction {            //Transaction class that display the transaction history 
+class Transaction {
     private final String date;
     private final String description;
     private final double amount;
 
-    public Transaction(String description, double amount) {   
+    public Transaction(String description, double amount) {
         this.date = new Date().toString();
         this.description = description;
         this.amount = amount;
@@ -16,8 +16,9 @@ class Transaction {            //Transaction class that display the transaction 
         return "Date: " + date + ", Description: " + description + ", Amount: repees" + amount;
     }
 }
+//This is a transaction class that manage the transaction history
 
-class BankAccount {             //BankAccount class have four methods 1. Deposit 2. withdraw 3.getAccountDetails 4.getTransactionHistory
+class BankAccount {                    //This is BankAccount class and have one constructor and four methods
     private final String accountNumber;
     private final String accountHolderName;
     private double balance;
@@ -28,14 +29,14 @@ class BankAccount {             //BankAccount class have four methods 1. Deposit
         this.accountHolderName = accountHolderName;
         this.balance = balance;
         this.transactionHistory = new ArrayList<>();
-    }
+    } //BankAccount Constructor
 
-    public void deposit(double amount) {
+    public void deposit(double amount) { //Deposit method for deposit the amount
         balance += amount;
         transactionHistory.add(new Transaction("Deposit", amount));
     }
 
-    public boolean withdraw(double amount) {
+    public boolean withdraw(double amount) {  //Withdraw method for withdraw the amount
         if (balance >= amount) {
             balance -= amount;
             transactionHistory.add(new Transaction("Withdrawal", -amount));
@@ -45,16 +46,18 @@ class BankAccount {             //BankAccount class have four methods 1. Deposit
         return false;
     }
 
-    public String getAccountDetails() {
+    public String getAccountDetails() {    //This methos returns the details of the account
         return "Account Number: " + accountNumber +
                "\nAccount Holder: " + accountHolderName +
                "\nBalance: rupees" + balance;
     }
 
-    public ArrayList<Transaction> getTransactionHistory() {
+    public ArrayList<Transaction> getTransactionHistory() { // This method return the Arraylist that provide the transaction history
         return transactionHistory;
     }
 }
+
+
 
 public class BankManagementSystemproject {
     public static void main(String[] args) {
@@ -63,13 +66,13 @@ public class BankManagementSystemproject {
 
         while (true) {
             System.out.println("1. Create Account\n2. Deposit\n3. Withdraw\n4. Details of the user\n5. Display all user\n6. Show Transaction History\n7. Exit");
-            System.out.print("Enter the choice: ");
+            System.out.print("Enter your choice: ");
             int choice = scanner.nextInt();
             scanner.nextLine();  
 
             switch (choice) {
                 case 1:
-                    System.out.print("Account Number Of The Customer: ");
+                    System.out.print("Account Number: ");
                     String accountNumber = scanner.nextLine();
                     System.out.print("Account Holder Name: ");
                     String accountHolderName = scanner.nextLine();
@@ -79,7 +82,7 @@ public class BankManagementSystemproject {
                     System.out.println("Account created.");
                     break;
                 case 2:
-                    System.out.print("Account Number Of The Customer: ");
+                    System.out.print("Account Number: ");
                     String depositAccountNumber = scanner.nextLine();
                     BankAccount depositAccount = accounts.get(depositAccountNumber);
                     if (depositAccount != null) {
@@ -93,8 +96,8 @@ public class BankManagementSystemproject {
                     break;
                 case 3:
                     System.out.print("Account Number: ");
-                    String withdrawAccountNumber = scanner.nextLine();
-                    BankAccount withdrawAccount = accounts.get(withdrawAccountNumber);
+                    String AccountNumberforWithdraw = scanner.nextLine();
+                    BankAccount withdrawAccount = accounts.get(AccountNumberforWithdraw);
                     if (withdrawAccount != null) {
                         System.out.print("Withdraw Amount: ");
                         double withdrawAmount = scanner.nextDouble();
@@ -107,8 +110,8 @@ public class BankManagementSystemproject {
                     break;
                 case 4:
                     System.out.print("Account Number: ");
-                    String accountDetailsNumber = scanner.nextLine();
-                    BankAccount accountDetails = accounts.get(accountDetailsNumber);
+                    String accountNumberfordetails = scanner.nextLine();
+                    BankAccount accountDetails = accounts.get(accountNumberfordetails);
                     if (accountDetails != null) {
                         System.out.println(accountDetails.getAccountDetails());
                     } else {
@@ -141,7 +144,10 @@ public class BankManagementSystemproject {
         }
         
     }
-     private static void displayAllUsers(Map<String, BankAccount> accounts) {
+
+    // In the main method, I provide the choise for the 1. Create Account 2. Deposit 3. 
+    // Withdraw 4. Details of the user 5. Display all user\n6. Show Transaction History 7. Exit
+     private static void displayAllUsers(Map<String, BankAccount> accounts) { //This class display the all user of the bank
         System.out.println("All Users:");
         for (Map.Entry<String, BankAccount> entry : accounts.entrySet()) {
             String accountNumber = entry.getKey();
@@ -152,4 +158,3 @@ public class BankManagementSystemproject {
         }
     }
 }
-
