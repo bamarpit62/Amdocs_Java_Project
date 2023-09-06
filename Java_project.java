@@ -13,7 +13,7 @@ class Transaction {
 
     @Override
     public String toString() {
-        return "Date: " + date + ", Description: " + description + ", Amount: repees" + amount;
+        return "Date: " + date + ", Description: " + description + ", Amount: ₹" + amount;
     }
 }
 //This is a transaction class that manage the transaction history
